@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 5.2.0  -->
+<!-- 2015-08-21T15:17:30 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CarelessInterferenceNoOfRunners" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="1bde4d6c-5a16-4995-8857-421f48809cfe">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="P2PDB_Connection"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="startDate" class="java.lang.String"/>
+	<parameter name="endDate" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+COUNT(CASE WHEN  rec_race_type_id = 10 THEN 1 ELSE NULL END) AS NHProf
+,
+COUNT(CASE WHEN  rec_race_type_id = 9 THEN 1 ELSE NULL END) AS Qr
+,
+COUNT(CASE WHEN rec_race_type_id = 1 THEN 1  ELSE NULL END) AS RR
+,
+COUNT(CASE WHEN rec_race_type_id = 7 THEN 1   ELSE NULL END) AS NHC
+,
+COUNT(CASE WHEN rec_race_type_id = 8 THEN 1 ELSE NULL END) AS app
+FROM turf201_disciplinaries.dis_enquiries_table   WHERE `rec_date` >=$P{startDate} AND `rec_date` < $P{endDate} AND (`rec_sub_cat_id` =99)]]>
+	</queryString>
+	<field name="NHProf" class="java.lang.Long"/>
+	<field name="Qr" class="java.lang.Long"/>
+	<field name="RR" class="java.lang.Long"/>
+	<field name="NHC" class="java.lang.Long"/>
+	<field name="app" class="java.lang.Long"/>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="99" height="19" uuid="5f432191-9c42-4d80-ad73-cb6c2877881c">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box leftPadding="3">
+					<topPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{app}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="0" width="99" height="19" uuid="516c812c-3aed-4205-85cb-b03af03eb676"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NHProf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="198" y="0" width="99" height="19" uuid="12d2efca-8338-43b2-951b-965544db284b"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Qr}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="297" y="0" width="99" height="19" uuid="3333d0a9-ba29-4bb6-8625-f0489f979d9d"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="396" y="0" width="99" height="19" uuid="35cfd866-f506-494b-92ec-a22b29eca506"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NHC}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

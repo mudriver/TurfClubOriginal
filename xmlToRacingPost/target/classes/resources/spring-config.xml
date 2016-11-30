@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd ">
+
+
+<!--  JDBC Data Source. It is assumed you have MySQL running on localhost port 3306 with
+username root and root as password. Change below if it’s not the case  -->
+
+<context:component-scan base-package="ie.turfclub.reporting.config" >
+</context:component-scan>
+
+<bean id="p2pDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+<property name="url" value="jdbc:mysql://46.22.132.148:3306/p2p?zeroDateTimeBehavior=convertToNull"/>
+<property name="username" value="turfclu_dbuproot"/>
+<property name="password" value="estabp2p"/>
+<property name="validationQuery" value="SELECT 1"/>
+</bean>
+
+<!--  Hibernate Session Factory  -->
+<bean id="p2psessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+<property name="dataSource" ref="p2pDataSource"/>
+<property name="packagesToScan">
+<array>
+<value>ie.turfclub.reporting.model.pointToPoint</value>
+</array>
+</property>
+<property name="hibernateProperties">
+<value>
+hibernate.dialect=org.hibernate.dialect.MySQLDialect
+</value>
+</property>
+</bean>
+
+<!--   Hibernate Transaction Manager  -->
+<bean id="p2ptransactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+<property name="sessionFactory" ref="p2psessionFactory"/>
+</bean>
+
+<!--  Activates annotation based transaction management -->
+
+<tx:annotation-driven transaction-manager="p2ptransactionManager"/>
+
+<!--  FOR VETREPORTS -->
+<bean id="vreportsDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+<property name="url" value="jdbc:mysql://46.22.132.148:3306/vetreports?zeroDateTimeBehavior=convertToNull"/>
+<property name="username" value="turfclu_dbuproot"/>
+<property name="password" value="estabp2p"/>
+<property name="validationQuery" value="SELECT 1"/>
+</bean>
+
+
+
+
+<bean id="vreportsSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+<property name="dataSource" ref="vreportsDataSource"/>
+<property name="packagesToScan">
+<array>
+<value>ie.turfclub.reporting.model.vetreports</value>
+</array>
+</property>
+<property name="hibernateProperties">
+<value>
+hibernate.dialect=org.hibernate.dialect.MySQLDialect
+</value>
+</property>
+</bean>
+
+
+
+ 
+<bean id="vreportstransactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+<property name="sessionFactory" ref="vreportsSessionFactory"/>
+<qualifier value="vreports"/>
+</bean>
+
+
+
+<tx:annotation-driven transaction-manager="vreportstransactionManager"/>
+
+<!--  FOR DISCIPLINARY -->
+<bean id="discipDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+<property name="url" value="jdbc:mysql://46.22.132.148:3306/turf201_disciplinaries?zeroDateTimeBehavior=convertToNull"/>
+<property name="username" value="turfclu_dbuproot"/>
+<property name="password" value="estabp2p"/>
+<property name="validationQuery" value="SELECT 1"/>
+</bean>
+
+
+<bean id="discipsessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+<property name="dataSource" ref="discipDataSource"/>
+<property name="packagesToScan">
+<array>
+<value>ie.turfclub.reporting.model.discips</value>
+</array>
+</property>
+<property name="hibernateProperties">
+<value>
+hibernate.dialect=org.hibernate.dialect.MySQLDialect
+</value>
+</property>
+</bean>
+
+
+<bean id="disciptransactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+<property name="sessionFactory" ref="discipsessionFactory"/>
+</bean>
+
+
+
+<tx:annotation-driven transaction-manager="disciptransactionManager"/>
+
+<context:component-scan base-package="ie.turfclub.reporting" >
+</context:component-scan>
+
+</beans>
+

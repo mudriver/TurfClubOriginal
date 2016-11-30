@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head data-th-fragment="header">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title data-th-text="#{vetreport.edit.page.title}">Title</title>
+<!-- Core CSS - Include with every page -->
+<link type="text/css" rel="stylesheet"
+	href="../../resources/css/bootstrap.css"
+	data-th-href="@{/resources/css/bootstrap.css}" />
+<link type="text/css" rel="stylesheet"
+	href="../../resources/font-awesome-4.1.0/css/font-awesome.css"
+	data-th-href="@{/resources/font-awesome-4.1.0/css/font-awesome.css}" />
+<link type="text/css" rel="stylesheet"
+	href="../../resources/css/sb-admin-2.css"
+	data-th-href="@{/resources/css/sb-admin-2.css}" />
+
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css" />
+<link type="text/css" rel="stylesheet"
+	href="../../resources/css/overrides.css"
+	data-th-href="@{/resources/css/overrides.css}" />
+<link type="text/css" rel="stylesheet"
+	href="../../resources/css/select2.css"
+	data-th-href="@{/resources/css/select2.css}" />
+<script type="text/javascript"
+	src="../../resources/js/jquery-2.1.1.min.js"
+	data-th-src="@{/resources/js/jquery-2.1.1.min.js}"></script>
+<script type="text/javascript" src="../../resources/js/vetreportnew.js"
+	data-th-src="@{/resources/js/vetreportnew.js}"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+     <![endif]-->
+
+</head>
+<body>
+
+	<!-- /#wrapper -->
+
+
+
+
+	<div class="container-fluid">
+		<div data-th-replace="fragments/sb-admin-2 :: top-nav"></div>
+		<div class="jumbotron">
+			<h3 class="col-sm-12" data-th-text="#{vetreport.new.head.title}">Edit
+				HunterCert</h3>
+
+
+
+			<form id="vetReportNewForm" novalidate="novalidate" class="form-horizontal" action="#"
+				data-th-action="@{/vetReports/edit}" 
+				method="get">
+
+					<div class=" row form-group">
+						<div class="col-xs-3 text-right">
+							<label for="reportTypeSel"
+								data-th-text="#{vetreport.new.reporttype.label}">SELECT
+								A REPORT TYPE</label>
+						</div>
+						<div class="col-xs-6">
+							<select class="form-control" id="reportTypeSel" name="reportType">
+								<option value="-1"
+									data-th-text="#{vetreport.new.reporttype.pleaseSelect}">Non
+									run</option>
+								<option value="Non-Runner"
+									data-th-text="#{vetreport.new.reporttype.nonrun}">Non
+									run</option>
+								<option value="Pre-Race"
+									data-th-text="#{vetreport.new.reporttype.prerace}">Pre
+									Race</option>
+								<option value="Random"
+									data-th-text="#{vetreport.new.reporttype.random}">Random</option>
+								<option value="Track"
+									data-th-text="#{vetreport.new.reporttype.track}">Track</option>
+							</select>
+						</div>
+						<div class="col-xs-3"><span class="text-danger" id="reportTypeError" data-th-text="#{vetreport.new.reporttype.error}"></span></div>
+					</div>
+					
+					<!-- Buttons  -->
+				<div class="row form-group">
+					<div class="col-xs-3 text-right"></div>
+					<div class="col-xs-6 text-center">
+
+
+						<button id="formSubmit" type="submit" class="btn btn-primary"
+							data-th-text="#{vetreport.new.ok.button}">OK</button>
+
+						<a href="#" data-th-href="@{/vetReports/}">
+							<button type="button" class="btn btn-default active"
+								data-th-text="#{vetreport.edit.cancel.button}">Cancel</button>
+						</a>
+					</div>
+					<div class="col-xs-3"></div>
+
+
+
+				</div><!-- END BUTTONS -->
+			</form>
+
+
+
+
+
+
+
+		</div>
+		<!-- END JUMBOTRON TAG -->
+	</div>
+
+	<!-- END CONTAINER TAG -->
+
+
+	<script type="text/javascript"
+		src="../../resources/js/bootstrap.min.js"
+		data-th-src="@{/resources/js/bootstrap.min.js}"></script>
+	<script type="text/javascript"
+		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+	<script src="../../resources/js/select2.js" type="text/javascript"
+		data-th-src="@{/resources/js/select2.js}"></script>
+	<!-- SB Admin Scripts - Include with every page -->
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 5.6.1.final using JasperReports Library version 5.2.0  -->
+<!-- 2014-10-09T16:51:14 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AccountsReportHCerts" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="71e6e4d8-161d-4ddf-a3fb-9037df407b32">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="P2PDB_Connection"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<style name="Style1"/>
+	<parameter name="tclogo" class="java.awt.image.BufferedImage"/>
+	<parameter name="date" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="dateCreated" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[select  p2p.p2p_hunter_certs.hcert_transaction_time ,   p2p.p2p_owners_handlers.owner_handler_name,   p2p.p2p_hunter_certs.hcert_order_id,  p2p.p2p_owners_handlers.owner_handler_id,  p2p.p2p_huntercerts_sales.sales_payee    from 
+ p2p.p2p_hunter_certs JOIN   p2p.p2p_owners_handlers    ON  p2p.p2p_hunter_certs.hcert_handler_id= p2p.p2p_owners_handlers.owner_handler_id 
+ JOIN  p2p.p2p_huntercerts_sales ON  p2p.p2p_huntercerts_sales.sales_order_id =  p2p.p2p_hunter_certs.hcert_order_id 
+  WHERE 
+  p2p.p2p_hunter_certs.hcert_cert_status = 'PAID' AND  DATE(p2p.p2p_hunter_certs.hcert_transaction_time)=$P{date}  GROUP BY   p2p.p2p_hunter_certs.hcert_order_id]]>
+	</queryString>
+	<field name="owner_handler_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hcert_order_id" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="owner_handler_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sales_payee" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hcert_transaction_time" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="90" splitType="Stretch">
+			<rectangle radius="20">
+				<reportElement x="0" y="0" width="549" height="82" forecolor="#003366" backcolor="#FFFFFF" uuid="b7f6060c-f4ed-43e9-879b-0597de008ed4"/>
+				<graphicElement>
+					<pen lineWidth="5.0" lineStyle="Double"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="150" y="15" width="295" height="22" forecolor="#003366" uuid="eda63361-fd21-40f2-9a25-97c39a30d8a1"/>
+				<box leftPadding="0"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hunter Certs Online Daily Accounts Report]]></text>
+			</staticText>
+			<image scaleImage="RealSize" isUsingCache="true">
+				<reportElement x="451" y="15" width="90" height="50" uuid="7d99d67f-e94e-4b02-a98b-5dd6b6c3fc4f">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{tclogo}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="150" y="35" width="204" height="30" forecolor="#B52522" uuid="a5aeff2a-222c-4511-a72a-245d8da059e7"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Date:" + $P{dateCreated}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="2" width="130" height="79" forecolor="#03518C" uuid="2ed85d3b-a1f4-44c7-b7cf-e9ce136edc28"/>
+				<box leftPadding="8" rightPadding="0">
+					<rightPen lineWidth="0.5" lineColor="#03518C"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="26" isBold="true" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Turf Club]]></text>
+			</staticText>
+			<line>
+				<reportElement x="450" y="0" width="1" height="81" forecolor="#03518C" uuid="d48e595c-4a6b-4697-8082-54946e987c1f"/>
+			</line>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="14" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="10" width="549" height="1" uuid="60d45cc1-4ff1-4f56-879f-57bf19d7ae08"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="90" splitType="Stretch">
+			<textField>
+				<reportElement x="135" y="50" width="144" height="20" uuid="3b6a3c8d-43d1-48ca-813f-d4af69ce9d1e"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{owner_handler_name}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="23" width="549" height="1" uuid="6303e42d-41e2-4e04-8640-412fa132a8e1">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="135" y="30" width="144" height="20" uuid="18be4d17-9fd9-4439-a888-4b8fc7475663"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hcert_order_id}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="281" y="50" width="274" height="40" uuid="0dcae336-7ee6-4019-b26f-806d5fcaa028"/>
+				<subreportParameter name="handlerID">
+					<subreportParameterExpression><![CDATA[$F{owner_handler_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["resources/resources/AccountsReportHCertsSub.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="281" y="30" width="200" height="20" uuid="8d31b9b5-9d7c-4dac-98d4-1ed961e1501c"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Horses Paid:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="50" width="200" height="20" uuid="dd65160f-7f26-4744-9b19-a9aaf6010a51"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Handler:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="30" width="129" height="20" uuid="7de784b8-f9be-45e1-b95b-8743ab739b59"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Order ID:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="200" height="20" uuid="dabc6bba-2d7b-47aa-a7d6-43ff9fa056f9"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Transaction:]]></text>
+			</staticText>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="279" y="23" width="1" height="67" uuid="5f88c9fd-eae4-46ba-b595-287e0564f7ff"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="70" width="200" height="20" uuid="6a1d4cdc-c317-4fbb-8a96-1b36d46e192a"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Payee:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="135" y="70" width="144" height="20" uuid="a7641ed4-e936-4ee8-a755-ceb7ef8dec81"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sales_payee}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="0" width="160" height="20" uuid="11dd2dad-bcb7-4e7a-a5b6-6c5f8e106fa3"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hcert_transaction_time}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

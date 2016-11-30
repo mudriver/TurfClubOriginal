@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl"><name>P2PDB_Connection</name><driver>com.mysql.jdbc.Driver</driver><username>root</username><password>1790@estab</password><savePassword>true</savePassword><url>jdbc:mysql://46.22.132.148:3306</url><database></database><serverAddress></serverAddress></jdbcDataAdapter>

@@ -1,0 +1,37 @@
+html,body {
+	height: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+        text-align: center;
+        margin-bottom:20px;
+        color: white;
+    }
+.no-border-on-me>thead>tr>th,.no-border-on-me>tbody>tr>th,.no-border-on-me>tfoot>tr>th,.no-border-on-me>thead>tr>td,.no-border-on-me>tbody>tr>td,.no-border-on-me>tfoot>tr>td
+	{
+	border-top-style: none;
+	border-bottom-style: none;
+}
+
+.dateerror {
+	color: red;
+	font-family: Verdana;
+	font-size: 8pt;
+}
+
+.jumbotron {
+	background-image: url(../img/background.jpg);
+	background-position: 0% 25%;
+	background-size: cover;
+	background-repeat: repeat-y;
+	height: 92%;
+}
+
+.container-fluid {
+	background-color: #3B7CBF;
+	height: 100%;
+	
+}
+label {
+	color : white;
+}
+

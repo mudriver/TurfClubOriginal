@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:th="http://www.thymeleaf.org">
+ 
+<head data-th-fragment="header">
+ <meta charset="utf-8" />
+ <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <title data-th-text="#{huntercert.list.page.title}">Title</title>
+<!-- Core CSS - Include with every page -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap.min.css"
+        data-th-href="@{/resources/css/bootstrap.min.css}" />
+         
+    <link type="text/css" rel="stylesheet" href="../../resources/font-awesome-4.1.0/css/font-awesome.css"
+        data-th-href="@{/resources/font-awesome-4.1.0/css/font-awesome.css}" />
+ 
+    <!-- SB Admin CSS - Include with every page -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/sb-admin-2.css"
+        data-th-href="@{/resources/css/sb-admin-2.css}" />
+     
+    <style>
+        .no-border-on-me>thead>tr>th,
+        .no-border-on-me>tbody>tr>th,
+        .no-border-on-me>tfoot>tr>th,
+        .no-border-on-me>thead>tr>td,
+        .no-border-on-me>tbody>tr>td,
+        .no-border-on-me>tfoot>tr>td
+        {
+            border-top-style: none;
+            border-bottom-style: none;
+        }
+    </style>
+     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+ <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+ <!--[if lt IE 9]>
+       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+     <![endif]-->
+</head>
+<body>
+ <div class="container-fluid">
+  <div class="row">
+   <div class="main">
+    
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+     <h3 data-th-text="#{huntercert.edit.head.title}">Edit HunterCert</h3>
+     <form class="form-horizontal" action="#" data-th-action="@{/hunterCert/edit}" data-th-object="${hunterCert}" method="post">
+      <div class="form-group">
+       <label class="col-sm-5 control-label" data-th-text="#{huntercert.list.type.label}">Hunter Cert Type</label>
+       <div class="col-sm-7">
+        <input type="text" hidden="hidden" data-th-value="*{id}" data-th-field="*{id}" ></input>
+        <input type="text" class="form-control" data-th-value="*{yob}" data-th-field="*{yob}" ></input>
+       </div>
+      </div>
+      <div class="form-group">
+       <label class="col-sm-5 control-label" data-th-text="#{huntercert.list.name.label}">Strategy Name</label>
+       <div class="col-sm-7">
+        <input type="text" class="form-control" data-th-value="*{horse_name}" data-th-field="*{horse_name}" ></input>
+       </div>
+      </div>
+      <div class="form-group">
+       <div class="col-sm-offset-5 col-sm-7" >
+        <button type="submit" class="btn btn-primary"        name="action" data-th-value="#{button.action.save}"   data-th-text="#{button.label.save}"  >Save</button>  
+        <button type="submit" class="btn btn-default active" name="action" data-th-value="#{button.action.cancel}" data-th-text="#{button.label.cancel}">Cancel</button>
+       </div>
+      </div>
+      <div class="form-group">
+       <div class="col-sm-offset-5 col-sm-7" >
+        <p class="text-danger" data-th-if="${#fields.hasErrors('yob')}" data-th-errors="*{yob}">type error</p> 
+        <p class="text-danger" data-th-if="${#fields.hasErrors('horse_name')}" data-th-errors="*{horse_name}">name error</p> 
+       </div>
+      </div>
+     </form>
+    </div>
+    <div class="col-sm-3"></div>
+     
+   </div>  <!-- END MAIN TAG -->
+  </div>  <!-- END ROW TAG -->
+ </div> <!-- END CONTAINER TAG -->
+
+</body>
+</html>

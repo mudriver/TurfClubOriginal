@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head data-th-fragment="header">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title data-th-text="#{huntercert.conditions.tab.label}">Title</title>
+
+
+<!-- Core CSS - Include with every page -->
+<link type="text/css" rel="stylesheet"
+	href="../../resources/css/bootstrap.css"
+	data-th-href="@{/resources/css/bootstrap.css}" />
+
+<link type="text/css" rel="stylesheet"
+	href="../../resources/font-awesome-4.1.0/css/font-awesome.css"
+	data-th-href="@{/resources/font-awesome-4.1.0/css/font-awesome.css}" />
+
+<!-- SB Admin CSS - Include with every page -->
+<link type="text/css" rel="stylesheet"
+	href="../../resources/css/sb-admin-2.css"
+	data-th-href="@{/resources/css/sb-admin-2.css}" />
+<link rel="stylesheet" href="../../resources/css/select2.css"
+	data-th-href="@{/resources/css/select2.css}" />
+<style>
+.no-border-on-me>thead>tr>th,.no-border-on-me>tbody>tr>th,.no-border-on-me>tfoot>tr>th,.no-border-on-me>thead>tr>td,.no-border-on-me>tbody>tr>td,.no-border-on-me>tfoot>tr>td
+	{
+	border-top-style: none;
+	border-bottom-style: none;
+}
+</style>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+     <![endif]-->
+
+</head>
+<body>
+	<div id="wrapper">
+		<!-- /#wrapper -->
+
+		<div
+			data-th-replace="fragments/newHunterCertForm-fragments :: top-nav"></div>
+
+
+
+		<div id="page-wrapper">
+
+			<div class="col-lg-12">
+				<div id='nav-tabs'>
+
+					<nav>
+						<ul class="nav nav-tabs">
+							<li class="list-group-item-heading"><a
+								href="/huntercerts/hunterCert/handlerDetail">Step 1 -
+									Handler</a></li>
+							<li class="list-group-item-heading"><a
+								href="/huntercerts/hunterCert/horseDetail">Step 2 - Horse</a></li>
+							<li class="list-group-item-heading"><a
+								href="/huntercerts/hunterCert/ownerDetail">Step 3 - Owner</a></li>
+							<li class="list-group-item-heading"><a
+								href="/huntercerts/hunterCert/huntDetail">Step 4 - Hunt</a></li>
+							<li class="list-group-item-heading"><a
+								href="/huntercerts/hunterCert/vaccinations">Step 5 -
+									Vaccinations</a></li>
+							<li class="active"><a href="/huntercerts/hunterCert/confirm">Step
+									6 - Confirm</a></li>
+							<li class="list-group-item-heading"><a
+								href="/huntercerts/hunterCert/review">Step 7 - Review</a></li>
+							<li class="list-group-item-heading"><a
+								href="/huntercerts/hunterCert/payment">Step 8 - Payment</a></li>
+						</ul>
+					</nav>
+				</div>
+
+				<h4 class="page-header"
+					data-th-text="#{huntercert.conditions.table.title}">Configured
+					Strategies</h4>
+				<form class="form" action="#" id="conditionsForm"
+					data-th-action="@{/hunterCert/conditionsAccept}" method="post">
+					<div class="table responsive">
+						<table class="no-border-on-me table ">
+							<thead>
+								<tr>
+									<th class='col-sm-1'></th>
+									<th class="col-sm-11" data-th-text="#{huntercert.conditions.form.label}">huntercert
+										Type</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td></td>
+									<td>I certify that:-</td>
+								</tr>
+
+								<tr>
+									<td class='col-sm-1 text-center'>1.</td>
+									<td>The submitted details of age, sex and pedigree are
+										correct and that the horse's name has been registered.</td>
+								</tr>
+								<tr>
+									<td class='col-sm-1 text-center'>2.</td>
+									<td>I agree to be bound by the Point-to-Point Regulations
+										currently in force.</td>
+								</tr>
+								<tr>
+									<td class='col-sm-1 text-center'>3.</td>
+									<td>The named animal has been schooled satisfactorily over
+										fences.</td>
+								</tr>
+								<tr>
+									<td class='col-sm-1 text-center'></td>
+									<td>-------------------------------------------------------------------------------------------------</td>
+								</tr>
+								<tr>
+									<td class='col-sm-1 text-center'>4.</td>
+									<td>This Application is not valid until it has been
+										verified as Registered by the Office of the Governing Bodies,
+										The Curragh, Co. Kildare and published on the Turf Club
+										Website.</td>
+								</tr>
+								<tr>
+									<td class='col-sm-1 text-center'>5.</td>
+									<td>REGISTRATION FEE: &euro;50</td>
+								</tr>
+							
+
+	<tr>
+									<td class='col-sm-1 text-center'></td><td> Has this horse ran outside Ireland?
+									</td>
+                  </tr>
+                  <tr>
+                  <td></td>
+                  <td>
+                        <input type="checkbox" name="yes" id="yes"
+										value="yes" />Yes<br />
+										<input type="checkbox" name="no" id="no"
+										value="no" />No<br />
+   
+   
+          </td>
+									
+          
+								</tr>
+
+								<tr>
+									<td></td><td> I agree to the conditions set out above
+									</td>
+                  </tr>
+                  <tr>
+                  <td></td>
+                  <td>
+                        <input type="checkbox" name="agree" id="agree"
+										value="agree" />I Agree<br />
+   
+          </td>
+									
+          
+								</tr>
+          <tr>
+          <td></td>
+        <td>
+         <button type="submit" class="btn btn-primary" id="agreeConditions"
+											data-th-text="#{owner.form.submit.button}">Continue</button>
+										
+        </td>
+       </tr>
+       <tr>
+  
+        <td>  </td>
+       </tr>
+      </tbody>
+      </table>
+  
+    </div> 
+    </form>
+   
+      
+
+      </div>  <!-- /.col-lg-12 -->   
+           
+    </div>      <!-- page wrapper -->
+</div>              <!-- /#wrapper -->
+ <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+   <!--   <script type="text/javascript" src="../../resources/js/jquery-2.1.1.min.js"
+        data-th-src="@{/resources/js/jquery-2.1.1.min.js}"></script>-->
+     <script
+		src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
+		data-th-src="@{//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js}"></script>    
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript"
+		src="../../resources/js/bootstrap.min.js"
+		data-th-src="@{/resources/js/bootstrap.min.js}"></script>
+ 
+    <!-- Core Scripts - Include with every page -->
+    <script type="text/javascript"
+		src="../../resources/js/plugins/metisMenu/jquery.metisMenu.js"
+		data-th-src="@{/resources/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+    
+     <script type="text/javascript"
+		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>     
+    <script src="../../resources/js/select2.js" type="text/javascript"
+		data-th-src="@{/resources/js/select2.js}"></script>
+   
+    <!-- SB Admin Scripts - Include with every page -->
+     <script type="text/javascript"
+		src="../../resources/js/conditions.js"
+		data-th-src="@{/resources/js/conditions.js}"></script> 
+ 
+        </body>
+</html>

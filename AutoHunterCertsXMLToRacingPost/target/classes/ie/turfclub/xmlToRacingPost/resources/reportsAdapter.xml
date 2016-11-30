@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl"><name>P2PDB_Connection</name><driver>com.mysql.jdbc.Driver</driver><username>turfclu_dbuproot</username><password>49a59523-5f08-4b4e-b342-4b58ad73d339</password><savePassword>true</savePassword><url>jdbc:mysql://46.22.132.148:3306/p2p</url><database></database><serverAddress></serverAddress></jdbcDataAdapter>

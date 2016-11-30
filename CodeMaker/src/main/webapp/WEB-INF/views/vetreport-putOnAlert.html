@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head data-th-fragment="header">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title data-th-text="#{vetreport.edit.page.title}">Title</title>
+<!-- Core CSS - Include with every page -->
+<link type="text/css" rel="stylesheet"
+	href="../../resources/css/bootstrap.css"
+	data-th-href="@{/resources/css/bootstrap.css}" />
+
+<link type="text/css" rel="stylesheet"
+	href="../../resources/font-awesome-4.1.0/css/font-awesome.css"
+	data-th-href="@{/resources/font-awesome-4.1.0/css/font-awesome.css}" />
+
+<!-- SB Admin CSS - Include with every page -->
+<link type="text/css" rel="stylesheet"
+	href="../../resources/css/sb-admin-2.css"
+	data-th-href="@{/resources/css/sb-admin-2.css}" />
+<link rel="stylesheet" href="../../resources/css/select2.css"
+	data-th-href="@{/resources/css/jquery-ui.structure.min.css}" />
+
+
+
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css" />
+<style>
+html,body {
+	height: 100%;
+}
+
+.no-border-on-me>thead>tr>th,.no-border-on-me>tbody>tr>th,.no-border-on-me>tfoot>tr>th,.no-border-on-me>thead>tr>td,.no-border-on-me>tbody>tr>td,.no-border-on-me>tfoot>tr>td
+	{
+	border-top-style: none;
+	border-bottom-style: none;
+}
+
+.dateerror {
+	color: red;
+	font-family: Verdana;
+	font-size: 8pt;
+}
+
+.jumbotron {
+	background-image: url(../../vetReports/resources/img/background.jpg);
+	background-position: 0% 25%;
+	background-size: cover;
+	background-repeat: repeat-y;
+	color: white;
+	text-shadow: 1px 1px #3B7CBF;
+	height: 92%;
+}
+
+.container-fluid {
+	background-color: #3B7CBF;
+	height: 100%;
+	
+}
+
+
+</style>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+     <![endif]-->
+
+</head>
+<body>
+
+              <!-- /#wrapper -->
+ 
+   
+
+
+	<div class="container-fluid">
+	 <div data-th-replace="fragments/sb-admin-2 :: top-nav"></div>
+		<div class="jumbotron">
+		<h3 data-th-text="#{vetreport.edit.head.title}">Edit HunterCert</h3>
+			<form id="vetReportForm" class="form-horizontal" action="#"
+				data-th-action="@{/vetreport/edit}" data-th-object="${vetReport}"
+				method="post">
+
+
+				<table class="no-border-on-me table ">
+					<thead>
+						<tr>
+							<th class="col-sm-8"
+								data-th-text="#{vetreports.racecard.detail.label}">Please
+								Enter Additional Vaccination Dates as Necessary</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						<tr class="col-sm-8">
+							<td><input id="meetingDate" class="datepicker" type="text"></input><span
+								class="dateerror"> Invalid Date.(dd/MM/yyyy) </span></td>
+
+							<td></td>
+						</tr>
+						<tr>
+							<td class="text-danger"
+								data-th-if="${#fields.hasErrors('reportRacecardId.date')}"
+								data-th-errors="*{reportRacecardId.date}">type error</td>
+						</tr>
+
+					</tbody>
+				</table>
+
+
+
+
+
+
+				<div class="form-group">
+					<label class="col-sm-5 control-label"
+						data-th-text="#{vetreport.edit.id.label}">Hunter Cert Type</label>
+					<div class="col-sm-7">
+						<input type="text" hidden="hidden" data-th-value="*{reportId}"
+							data-th-field="*{reportId}"></input> <input type="text"
+							class="form-control"
+							data-th-value="*{reportRacecardId.horseName}"
+							data-th-field="*{reportRacecardId.horseName}"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-5 control-label"
+						data-th-text="#{huntercert.list.name.label}">Strategy Name</label>
+					<input id="meetingDate" class="datepicker" type="text"></input><span
+								class="dateerror"> Invalid Date.(dd/MM/yyyy) </span>
+					
+					<div class="col-sm-7">
+						<input type="text" class="form-control"
+							data-th-value="*{reportRacecardId.trainerName}"
+							data-th-field="*{reportRacecardId.trainerName}"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-5 col-sm-7">
+						<button id="formsubmit" class="btn btn-primary" name="action"
+							data-th-value="#{button.action.save}"
+							data-th-text="#{button.label.save}">Save</button>
+						<button class="btn btn-default active" name="action"
+							data-th-value="#{button.action.cancel}"
+							data-th-text="#{button.label.cancel}">Cancel</button>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-5 col-sm-7">
+						<p class="text-danger"
+							data-th-if="${#fields.hasErrors('reportRacecardId')}"
+							data-th-errors="*{reportRacecardId}">type error</p>
+						<p class="text-danger"
+							data-th-if="${#fields.hasErrors('reportRacecardId')}"
+							data-th-errors="*{reportRacecardId}">name error</p>
+					</div>
+				</div>
+			</form>
+
+
+
+		</div>
+		<!-- END ROW TAG -->
+	</div>
+	<!-- END CONTAINER TAG -->
+
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"
+		data-th-src="@{//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js}"></script>
+
+	<script type="text/javascript"
+		src="../../resources/js/bootstrap.min.js"
+		data-th-src="@{/resources/js/bootstrap.min.js}"></script>
+
+
+
+	<script type="text/javascript"
+		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+	<script src="../../resources/js/select2.js" type="text/javascript"
+		data-th-src="@{/resources/js/select2.js}"></script>
+	<!-- SB Admin Scripts - Include with every page -->
+
+	<script type="text/javascript"
+		src="../../resources/js/vetreportedit.js"
+		data-th-src="@{/resources/js/vetreportedit.js}"></script>
+
+</body>
+</html>

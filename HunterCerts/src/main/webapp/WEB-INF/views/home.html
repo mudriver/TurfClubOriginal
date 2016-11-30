@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:th="http://www.thymeleaf.org">
+ 
+<head data-th-fragment="header">
+ <meta charset="utf-8" />
+ <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link type="image/x-icon" href="favicon.ico" rel="shortcut icon" lang="en"/>
+ <title>Home</title>
+ <title data-th-text="#{huntercert.list.page.title}">Title</title>
+  
+ <!-- Bootstrap -->
+ <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap.min.css" th:href="@{/resources/css/bootstrap.min.css}" />
+ 
+ <title th:text="#{user.page.title}">Title</title>
+  
+ <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+ <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+ <!--[if lt IE 9]>
+       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+     <![endif]-->
+</head>
+ 
+<body>
+ <h1 data-th-text="#{home.page.title}">Title</h1>
+ <p>
+ <a href="hunterCert/list.html">Hunter Cert list</a>
+ 
+ </p>
+ 
+ <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+ <script type="text/css" src="../../resources/js/jquery-2.1.1.min.js" th:href="@{/resources/js/jquery-2.1.1.min.js}"></script>
+ <!-- Include all compiled plugins (below), or include individual files as needed -->
+ <script type="text/css" src="../../resources/js/bootstrap.min.js" th:href="@{/resources/js/bootstrap.min.js}"></script>
+</body>
+</html>

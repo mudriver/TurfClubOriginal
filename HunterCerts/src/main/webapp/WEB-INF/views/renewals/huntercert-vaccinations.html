@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:th="http://www.thymeleaf.org">
+ 
+<head data-th-fragment="header">
+ <meta charset="utf-8" />
+ <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <title data-th-text="#{huntercert.vaccinations.tab.label}">Title</title>
+ 
+  
+<!-- Core CSS - Include with every page -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap.css"
+        data-th-href="@{/resources/css/bootstrap.css}" />
+         
+    <link type="text/css" rel="stylesheet" href="../../resources/font-awesome-4.1.0/css/font-awesome.css"
+        data-th-href="@{/resources/font-awesome-4.1.0/css/font-awesome.css}" />
+ 
+    <!-- SB Admin CSS - Include with every page -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/sb-admin-2.css"
+        data-th-href="@{/resources/css/sb-admin-2.css}" />
+     <link rel="stylesheet" href="../../resources/css/select2.css"
+        data-th-href="@{/resources/css/select2.css}" />
+  
+
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css"/>
+    <style>
+        .no-border-on-me>thead>tr>th,
+        .no-border-on-me>tbody>tr>th,
+        .no-border-on-me>tfoot>tr>th,
+        .no-border-on-me>thead>tr>td,
+        .no-border-on-me>tbody>tr>td,
+        .no-border-on-me>tfoot>tr>td
+        {
+            border-top-style: none;
+            border-bottom-style: none;
+        }
+        .error0
+{
+    color: red;
+    font-family : Verdana;
+    font-size : 8pt;
+}
+.error1
+{
+    color: red;
+    font-family : Verdana;
+    font-size : 8pt;
+}
+.error2
+{
+    color: red;
+    font-family : Verdana;
+    font-size : 8pt;
+}
+    </style>
+     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+ <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+ <!--[if lt IE 9]>
+       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+     <![endif]-->
+
+         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+   </head>
+<body>
+ <div id="wrapper">                <!-- /#wrapper -->
+ 
+    <div data-th-replace="fragments/newHunterCertForm-fragments :: top-nav"></div>
+
+    
+ 
+  <div id="page-wrapper">
+        
+            <div class="col-lg-12">
+           <div id='nav-tabs'>
+  
+  	<nav>
+			<ul class="nav nav-tabs">
+				<li class="list-group-item-heading"><a href="/huntercerts/hunterCert/handlerDetail">Step 1 - Handler</a></li>
+				<li class="list-group-item-heading"><a href="/huntercerts/hunterCert/horseDetail">Step 2 - Horse</a></li>
+				<li class="list-group-item-heading"><a href="/huntercerts/hunterCert/ownerDetail">Step 3 - Owner</a></li>
+				<li class="list-group-item-heading"><a href="/huntercerts/hunterCert/huntDetail">Step 4 - Hunt</a></li>
+				<li class="active"><a href="/huntercerts/hunterCert/vaccinations">Step 5 - Vaccinations</a></li>
+				<li class="list-group-item-heading"><a href="/huntercerts/hunterCert/confirm">Step 6 - Confirm</a></li>
+				<li class="list-group-item-heading"><a href="/huntercerts/hunterCert/review">Step 7 - Review</a></li>
+			<li class="list-group-item-heading"><a href="/huntercerts/hunterCert/payment">Step 8 - Payment</a></li>
+			</ul>
+		</nav>
+  </div>
+      <h4 class="page-header" data-th-text="#{huntercert.vaccination.table.title} + ${horsename}">Configured Strategies</h4>
+    <div class="table responsive">
+    <table class="table table-striped table-bordered table-hover">
+     <thead>
+      <tr>
+      <th class="col-sm-1" ></th>
+        <th class="col-sm-11" data-th-text="#{huntercert.vaccination.header.label}">Huntercert Name</th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr data-th-each="vaccination ,iterStat : ${vaccinations}">
+      <td data-th-text="${iterStat.count}">1</td>
+       <td data-th-text="${vaccination.getStringDate()}">1</td>
+      </tr>
+     </tbody>
+    </table>
+    </div>
+     
+   
+     
+     
+    <form  data-th-if="${inputForm} != null" class="form" action="#" id="vaccinationForm"  data-th-action="@{/hunterCert/addVaccinations}" data-th-object="${inputForm}" method="post">
+    <div class="table responsive">
+     <table class="no-border-on-me table ">
+      <thead>
+       <tr>
+        <th class="col-sm-8" data-th-text="#{huntercert.vaccination.add.label}">Please Enter Additional Vaccination Dates as Necessary</th>
+       </tr>
+      </thead>
+      <tbody>
+      
+       <tr class="col-sm-8" data-th-each="vaccination  , rowStat : *{vaccinations}">
+               <td><input type="text" hidden="hidden" data-th-value="*{vaccinations[__${rowStat.index}__].vac_hcert_id}" data-th-field="*{vaccinations[__${rowStat.index}__].vac_hcert_id}"></input></td>
+              <td><input class="datepicker" type="text" data-th-field="*{vaccinations[__${rowStat.index}__].vac_date}" ></input><span data-th-class="error + ${rowStat.index}"> Invalid Date.(dd/MM/yyyy)
+</span></td>
+        
+        <td></td>
+       </tr>
+       <tr> 
+     <td class="text-danger" data-th-if="${#fields.hasErrors('vaccinations')}" data-th-errors="*{vaccinations}">type error</td>
+      </tr>
+     <tr>
+            <td></td>
+        <td><button id="formsubmit" class="btn btn-primary" data-th-text="#{huntercert.vaccination.button.label}">Add huntercert</button></td>
+     
+     </tr>
+      </tbody>
+     </table>
+  
+    </div> 
+   
+    </form>
+   
+      
+
+      </div>  <!-- /.col-lg-12 -->   
+           
+    </div>      <!-- page wrapper -->
+</div>              <!-- /#wrapper -->
+ <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+   <!--   <script type="text/javascript" src="../../resources/js/jquery-2.1.1.min.js"
+        data-th-src="@{/resources/js/jquery-2.1.1.min.js}"></script>-->
+   
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="../../resources/js/bootstrap.min.js"
+        data-th-src="@{/resources/js/bootstrap.min.js}"></script>
+ 
+     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" data-th-src="@{//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js}"></script>    
+    
+     <script type="text/javascript"
+        src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>     
+    <script src="../../resources/js/select2.js" type="text/javascript" data-th-src="@{/resources/js/select2.js}"></script>
+   <!-- SB Admin Scripts - Include with every page -->
+
+     <script type="text/javascript" src="../../resources/js/vaccinations.js"
+        data-th-src="@{/resources/js/vaccinations.js}"></script> 
+ 
+        </body>
+</html>

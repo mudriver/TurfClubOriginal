@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:th="http://www.thymeleaf.org">
+ 
+<head data-th-fragment="header">
+ <meta charset="utf-8" />
+ <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <title data-th-text="#{huntercert.review.tab.label}">Title</title>
+ 
+  
+<!-- Core CSS - Include with every page -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap.css"
+        data-th-href="@{/resources/css/bootstrap.css}" />
+         
+    <link type="text/css" rel="stylesheet" href="../../resources/font-awesome-4.1.0/css/font-awesome.css"
+        data-th-href="@{/resources/font-awesome-4.1.0/css/font-awesome.css}" />
+ 
+    <!-- SB Admin CSS - Include with every page -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/sb-admin-2.css"
+        data-th-href="@{/resources/css/sb-admin-2.css}" />
+     <link rel="stylesheet" href="../../resources/css/select2.css"
+        data-th-href="@{/resources/css/select2.css}" />
+    <style>
+        .no-border-on-me>thead>tr>th,
+        .no-border-on-me>tbody>tr>th,
+        .no-border-on-me>tfoot>tr>th,
+        .no-border-on-me>thead>tr>td,
+        .no-border-on-me>tbody>tr>td,
+        .no-border-on-me>tfoot>tr>td
+        {
+            border-top-style: none;
+            border-bottom-style: none;
+        }
+    </style>
+     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+ <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+ <!--[if lt IE 9]>
+       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+     <![endif]-->
+
+</head>
+<body>
+ <div id="wrapper">                <!-- /#wrapper -->
+ 
+    <div data-th-replace="fragments/newHunterCertForm-fragments :: top-nav"></div>
+
+    
+ 
+  <div id="page-wrapper">
+        
+            <div class="col-lg-12">
+           <div id='nav-tabs'>
+  
+  	<nav>
+			<ul class="nav nav-tabs">
+				<li class="list-group-item-heading"><a href="#">Step 1 - Handler</a></li>
+				<li class="list-group-item-heading"><a href="#">Step 2 - Horse</a></li>
+				<li class="list-group-item-heading"><a href="#">Step 3 - Owner</a></li>
+				<li class="list-group-item-heading"><a href="#">Step 4 - Hunt</a></li>
+				<li class="list-group-item-heading"><a href="#">Step 5 - Vaccinations</a></li>
+				<li class="list-group-item-heading"><a href="#">Step 6 - Confirm</a></li>
+				<li class="active"><a href="#">Step 7 - Review</a></li>
+			<li class="list-group-item-heading"><a href="#">Step 8 - Payment</a></li>
+			</ul>
+		</nav>
+  </div>
+     
+    <h4 data-th-if="${huntercerts} != null" class="page-header" data-th-text="#{huntercert.review.table.title}">Hunter Certs</h4>
+        <h4 data-th-if="${huntercerts} == null" class="page-header" data-th-text="#{huntercert.review.notable.title}">Hunter Certs</h4>
+     <div><span class="text-danger" data-th-if="${error} != null" data-th-text="${error}">name error</span></div>
+    <div  data-th-if="${huntercerts} != null" class="table responsive">
+    <table class="table table-striped table-bordered table-hover">
+     <thead>
+      <tr>
+       <th class="col-sm-4" data-th-text="#{huntercert.review.horsename.label}">Id</th>
+       <th class="col-sm-3" data-th-text="#{huntercert.review.owner.label}">Huntercert Type</th>
+       <th class="col-sm-3" data-th-text="#{huntercert.review.hunt.label}">Huntercert Name</th>
+       <th class="col-sm-2" data-th-text="#{huntercert.review.actions.label}">Action</th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr  data-th-each="hunterCert : ${huntercerts}">
+       <td   data-th-text="${hunterCert.getCert().getHorse_name()}">1</td>
+       <td   data-th-text="${hunterCert.getOwner().getOwner_handler_name()}">Iron Butterfly</td>
+       <td   data-th-text="${hunterCert.getHunt().getHunt_name()}">Triple Butter</td>
+      
+       <td style="text-align: center;">
+         <a href="#" data-th-href="@{/hunterCert/delete(horseName=${hunterCert.getCert().getHorse_name()},yob=${hunterCert.getCert().getYob()},phase=stage)}">
+         <button type="button" class="btn btn-default btn-xs">
+          <span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete
+         </button></a>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    </div>
+   
+   
+   <div  data-th-if="${huntercerts} == null" class="table responsive">
+    <table class="table table-striped table-bordered table-hover">
+     <thead>
+      <tr>
+       <th class="col-sm-4" data-th-text="#{huntercert.review.add.label}">Id</th> 
+      </tr>
+     </thead>
+     <tbody>
+     
+      <tr>
+         <td style="text-align: center;">
+         <a href="#" data-th-href="@{/hunterCert/horseDetail(add=add)}" >
+         <button type="button" id="add" class="btn btn-primary" data-th-text="#{huntercert.review.add.button}">
+          <span class="glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Delete
+         </button></a>
+       </td>
+     
+      </tr>
+
+     </tbody>
+    </table>
+    </div>
+    <div  data-th-if="${huntercerts} != null" class="table responsive">
+    <table class="table table-striped table-bordered table-hover">
+     <thead>
+      <tr>
+       <th class="col-sm-4" data-th-text="#{huntercert.review.addAnother.label}">Id</th>
+       <th class="col-sm-4" data-th-text="#{huntercert.review.pay.label}">Huntercert Type</th>
+       <th class="col-sm-4" data-th-text="#{huntercert.review.price.label}">Huntercert Name</th>
+     
+    
+      </tr>
+      
+     </thead>
+     <tbody>
+       <tr>
+         <td style="text-align: center;">
+         <a href="#"  data-th-href="@{/hunterCert/horseDetail(add=add)}" >
+         <button type="button" id="addAnother" class="btn btn-primary" data-th-text="#{huntercert.review.addAnother.button}">
+          <span class="glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Add
+         </button></a>
+       </td>
+       <td style="text-align: center;">
+       
+         <button type="button" id="pay" class="btn btn-primary" data-th-text="#{huntercert.review.pay.button}">
+          <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;&nbsp;Pay
+         </button>
+       </td>
+       <td data-th-text="'&euro;' + ${totalPrice}">Price</td>
+      </tr>
+     </tbody>
+    </table>
+    </div>
+   
+   
+       <form  data-th-if="${payObj} != null" class="form" enctype="application/x-www-form-urlencoded" action="https://testpayments.worldnettps.com/merchant/paymentpage" id="paymentForm" method="post">
+  
+     <input type="hidden" name="HORSES_PAID" data-th-value="${payObj.horsesPaid}"  ></input>
+     <input type="hidden" name="TERMINALID"  data-th-value="${payObj.terminalId}"  ></input>
+     <input type="hidden" name="ORDERID" data-th-value="${payObj.orderId}"  ></input>
+     <input type="hidden" name="CURRENCY" data-th-value="${payObj.currency}"  ></input>
+     <input type="hidden" name="RECEIPTPAGEURL" data-th-value="${payObj.returnPage}"  ></input>  
+      <input type="hidden" name="AMOUNT" data-th-value="${payObj.amount}"  ></input>
+      <input type="hidden" name="DATETIME" data-th-value="${payObj.dateTime}"  ></input>      
+   <input type="hidden" name="HASH" data-th-value="${payObj.hash}"  ></input> 
+   <input type="hidden" name="DESCRIPTION" data-th-value="${payObj.description}"  ></input> 
+ 
+    </form> 
+
+      </div>  <!-- /.col-lg-12 -->   
+           
+    </div>      <!-- page wrapper -->
+</div>              <!-- /#wrapper -->
+ <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+   <!--   <script type="text/javascript" src="../../resources/js/jquery-2.1.1.min.js"
+        data-th-src="@{/resources/js/jquery-2.1.1.min.js}"></script>-->
+     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" data-th-src="@{//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js}"></script>    
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="../../resources/js/bootstrap.min.js"
+        data-th-src="@{/resources/js/bootstrap.min.js}"></script>
+ 
+    <!-- Core Scripts - Include with every page -->
+    <script type="text/javascript" src="../../resources/js/plugins/metisMenu/jquery.metisMenu.js"
+        data-th-src="@{/resources/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+    
+     <script type="text/javascript"
+        src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>     
+    <script src="../../resources/js/select2.js" type="text/javascript" data-th-src="@{/resources/js/select2.js}"></script>
+   
+    <!-- SB Admin Scripts - Include with every page -->
+     <script type="text/javascript" src="../../resources/js/payment.js"
+        data-th-src="@{/resources/js/payment.js}"></script> 
+ 
+        </body>
+</html>

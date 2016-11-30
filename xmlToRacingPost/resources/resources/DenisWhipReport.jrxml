@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 5.2.0  -->
+<!-- 2015-08-21T15:45:44 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AccountsReportHCerts" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="71e6e4d8-161d-4ddf-a3fb-9037df407b32">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="P2PDB_Connection"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<style name="Style1"/>
+	<parameter name="tclogo" class="java.awt.image.BufferedImage"/>
+	<parameter name="date" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="dateCreated" class="java.lang.String">
+		<defaultValueExpression><![CDATA["21-08-2015"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT EXISTS(Select 1 from  turf201_disciplinaries.`authorisedReps` )]]>
+	</queryString>
+	<field name="EXISTS(Select 1 from  turf201_disciplinaries.`authorisedReps` )" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="90" splitType="Stretch">
+			<rectangle radius="20">
+				<reportElement x="0" y="0" width="555" height="82" forecolor="#003366" backcolor="#FFFFFF" uuid="b7f6060c-f4ed-43e9-879b-0597de008ed4">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="5.0" lineStyle="Double"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="150" y="15" width="295" height="22" forecolor="#003366" uuid="eda63361-fd21-40f2-9a25-97c39a30d8a1"/>
+				<box leftPadding="0"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Whip Rule Breaches]]></text>
+			</staticText>
+			<image scaleImage="RealSize" isUsingCache="true">
+				<reportElement x="451" y="15" width="90" height="50" uuid="7d99d67f-e94e-4b02-a98b-5dd6b6c3fc4f">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{tclogo}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="150" y="35" width="204" height="30" forecolor="#B52522" uuid="a5aeff2a-222c-4511-a72a-245d8da059e7"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Date:" + $P{dateCreated}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="2" width="130" height="79" forecolor="#03518C" uuid="2ed85d3b-a1f4-44c7-b7cf-e9ce136edc28"/>
+				<box leftPadding="8" rightPadding="0">
+					<rightPen lineWidth="0.5" lineColor="#03518C"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="26" isBold="true" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Turf Club]]></text>
+			</staticText>
+			<line>
+				<reportElement x="450" y="0" width="1" height="81" forecolor="#03518C" uuid="d48e595c-4a6b-4697-8082-54946e987c1f"/>
+			</line>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="14" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="10" width="555" height="1" uuid="60d45cc1-4ff1-4f56-879f-57bf19d7ae08">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="96" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="23" width="555" height="1" uuid="6303e42d-41e2-4e04-8640-412fa132a8e1">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="0" width="200" height="20" uuid="dabc6bba-2d7b-47aa-a7d6-43ff9fa056f9"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Penalty Analysis]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="24" width="555" height="66" uuid="19ace61b-be2a-4854-b576-fbb6e008b9b9">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["DenisWhipReportSubPenaltyAnalysis.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="104">
+			<staticText>
+				<reportElement x="0" y="0" width="260" height="20" uuid="2dcdd4b8-aa22-49cf-9e3f-4a88b811e2c6"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Analysis Of Riders Breaching The Rule]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="23" width="555" height="1" uuid="714a97b7-2863-4ef1-9540-b8120d3d4427">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+			</line>
+			<subreport>
+				<reportElement x="0" y="24" width="555" height="76" uuid="c654799b-ade9-457c-b496-5b21ad1d843d"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["resources/resources/DenisWhipReportRiderTypeAnalysis.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="65">
+			<staticText>
+				<reportElement x="0" y="0" width="260" height="20" uuid="eef34421-95ac-43f0-bf6e-49d0f335cfd4"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Breakdown Of Offences]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="23" width="555" height="1" uuid="92008b06-d8d7-4124-82e1-3bc972c04050">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+			</line>
+			<subreport>
+				<reportElement x="0" y="24" width="555" height="40" uuid="d0e4f396-400e-46f6-a823-408131614914"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["resources/resources/DenisWhipReportOffenceAnalysis.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>
